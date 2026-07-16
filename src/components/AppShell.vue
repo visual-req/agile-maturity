@@ -10,6 +10,7 @@ const items = computed(() => [
   { key: '/assessment/new', label: '评估配置' },
   { key: '/assessment/run', label: '问卷评估' },
   { key: '/report', label: '结果报告' },
+  { key: '/about', label: '评估说明' },
 ])
 
 const onSelect = ({ key }: { key: string }) => {

@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, defineAsyncComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { message } from 'ant-design-vue'
-import html2canvas from 'html2canvas'
-import jsPDF from 'jspdf'
-import ReportCharts from '@/components/ReportCharts.vue'
 import ScoreTag from '@/components/ScoreTag.vue'
 import { useAssessmentStore } from '@/stores/assessment'
 import type { AssessmentReport } from '@/types/assessment'
+
+const ReportCharts = defineAsyncComponent(() => import('@/components/ReportCharts.vue'))
 
 const router = useRouter()
 const store = useAssessmentStore()
@@ -195,6 +194,11 @@ const exportPdf = async () => {
   document.body.classList.add('is-exporting-pdf')
 
   try {
+    const [{ default: html2canvas }, { default: jsPDF }] = await Promise.all([
+      import('html2canvas'),
+      import('jspdf'),
+    ])
+
     const canvas = await html2canvas(reportContainerRef.value, {
       backgroundColor: '#ffffff',
       scale: 2,

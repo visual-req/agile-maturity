@@ -27,8 +27,8 @@ const modeOptions: Array<{ label: string, value: AssessmentMode }> = [
 const teamSizeOptions = ['10 人以内', '10-30 人', '30-100 人', '100 人以上']
 const industryOptions = ['互联网', '金融', '制造', '零售', '政企', '医疗', '其他']
 
-const submit = () => {
-  store.updateProfile({ ...formState })
+const submit = async () => {
+  await store.updateProfile({ ...formState })
   store.clearAnswers()
   store.report = null
   message.success('评估配置已保存，开始进入问卷评估。')

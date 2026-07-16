@@ -125,15 +125,19 @@ const resetCurrentSection = () => {
   })
 }
 
-const submitAssessment = () => {
+const submitAssessment = async () => {
   if (!store.completed) {
     message.warning('请先完成全部题目评分，再生成报告。')
     return
   }
 
-  store.createReport()
-  message.success('报告已生成。')
-  router.push('/report')
+  try {
+    await store.createReport()
+    message.success('报告已生成。')
+    router.push('/report')
+  } catch (e: any) {
+    message.error(e?.message ?? '报告生成失败，请重试。')
+  }
 }
 </script>
 
