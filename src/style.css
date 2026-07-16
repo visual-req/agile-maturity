@@ -85,6 +85,23 @@ a {
   color: #6b7280;
 }
 
+.brand-block.is-collapsed {
+  padding: 20px 12px;
+  text-align: center;
+}
+
+.brand-block.is-collapsed .brand-block__logo {
+  width: 36px;
+  height: 36px;
+  margin: 0 auto;
+}
+
+.sider-trigger-btn {
+  font-size: 18px;
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
 .app-shell__menu.ant-menu {
   background: transparent;
   border-inline-end: none;
@@ -456,6 +473,19 @@ a {
 
 .assessment-section__summary-arrow.is-collapsed {
   transform: rotate(-90deg);
+}
+
+.dim-nav__title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.dim-nav__toggle-btn {
+  font-size: 12px;
+  color: #6b7280;
+  padding: 2px 6px;
 }
 
 .dimension-nav {

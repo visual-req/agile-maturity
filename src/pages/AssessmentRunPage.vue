@@ -13,6 +13,7 @@ const headerCollapsed = ref(true)
 const contentRef = ref<HTMLElement | null>(null)
 const sectionRefs = ref<Record<string, HTMLElement | null>>({})
 const collapsedSections = ref<Record<string, boolean>>({})
+const dimNavCollapsed = ref(false)
 
 const groupedSections = computed(() => {
   const groups = groupQuestionsByDimension(store.profile.mode)
@@ -176,8 +177,16 @@ const submitAssessment = async () => {
 
     <section class="assessment-layout assessment-layout--full">
       <a-card class="panel-card assessment-layout__menu" :bordered="false">
-        <template #title>评估维度</template>
-        <div class="dimension-nav">
+        <template #title>
+          <div class="dim-nav__title-bar">
+            <span>评估维度</span>
+            <a-button type="text" class="dim-nav__toggle-btn" @click="dimNavCollapsed = !dimNavCollapsed">
+              <span v-if="dimNavCollapsed">☰ 展开</span>
+              <span v-else>✕ 收起</span>
+            </a-button>
+          </div>
+        </template>
+        <div v-show="!dimNavCollapsed" class="dimension-nav">
           <button
             v-for="section in groupedSections"
             :key="section.key"
